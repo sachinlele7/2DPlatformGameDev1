@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3316037511473630879}
   - component: {fileID: 6664422117438682830}
   - component: {fileID: -7654463101530537823}
+  - component: {fileID: 520190591}
+  - component: {fileID: 520190592}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -99,12 +101,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &-7654463101530537823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118,7 +120,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5880376, y: 1.1330233}
+  m_Offset: {x: 0.060433507, y: 0.902061}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.42, y: 0.1}
@@ -129,5 +131,39 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.976855, y: 2.8325582}
+  m_Size: {x: 0.6799128, y: 2.3706336}
   m_EdgeRadius: 0
+--- !u!95 &520190591
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215371333444936688}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a70fc16803203d1418bef34fcd01082a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &520190592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215371333444936688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6a77b581d5ae441b61273accb32401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 520190591}
+  speed: 4
+  jump: 90

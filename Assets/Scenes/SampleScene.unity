@@ -267,44 +267,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &520190590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4215371333444936688, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
-  m_PrefabInstance: {fileID: 5086886404463898183}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &520190591
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520190590}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a70fc16803203d1418bef34fcd01082a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &520190592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520190590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d6a77b581d5ae441b61273accb32401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 520190591}
-  speed: 4
 --- !u!1 &929223281
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,22 +383,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7654463101530537823, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
-      propertyPath: m_Size.x
-      value: 0.6799128
-      objectReference: {fileID: 0}
-    - target: {fileID: -7654463101530537823, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
-      propertyPath: m_Size.y
-      value: 2.3706336
-      objectReference: {fileID: 0}
-    - target: {fileID: -7654463101530537823, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.060433507
-      objectReference: {fileID: 0}
-    - target: {fileID: -7654463101530537823, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.902061
-      objectReference: {fileID: 0}
     - target: {fileID: 4215371333444936688, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
       propertyPath: m_Name
       value: Player

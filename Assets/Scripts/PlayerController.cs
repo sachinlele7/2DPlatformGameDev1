@@ -7,21 +7,27 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float speed;
+    public float jump;
+    private Rigidbody2D rb2d;
+
+    private void Awake()
+    {
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
 
 
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        MoveCharacter(horizontal);
+        float vertical = Input.GetAxisRaw("Jump");
 
-        PlayMovementAnimation(horizontal);
+        MoveCharacter(horizontal, vertical);
+
+        PlayMovementAnimation(horizontal, vertical);
 
     }
-
-    private void MoveCharacter(float horizontal)
+    private void MoveCharacter(float horizontal, float vertical)
     {
-
-
         Vector3 position = transform.position;
         position.x = position.x + horizontal * speed * Time.deltaTime;
         transform.position = position;
@@ -37,9 +43,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isrunning", false);
         }
-    }
 
-    private void PlayMovementAnimation(float horizontal)
+        if(vertical > 0)
+        {
+            rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
+        }
+    }
+    private void PlayMovementAnimation(float horizontal, float vertical)
     {
         animator.SetFloat("horizontal", Mathf.Abs(horizontal));
 
@@ -53,9 +63,7 @@ public class PlayerController : MonoBehaviour
         { scale.x = Mathf.Abs(scale.x); }
         transform.localScale = scale;
 
-        float vertical = Input.GetAxisRaw("Jump");
-
-
+        
         animator.SetBool("Jump", vertical > 0);
 
 
