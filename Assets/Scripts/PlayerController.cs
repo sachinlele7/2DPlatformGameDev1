@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         MoveCharacter(horizontal);
@@ -54,16 +54,9 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scale;
 
         float vertical = Input.GetAxisRaw("Jump");
-        if (vertical > 0)
-        {
-            animator.SetBool("Jump", true);
 
 
-        }
-        else
-        {
-            animator.SetBool("Jump", false);
-        }
+        animator.SetBool("Jump", vertical > 0);
 
 
         if (Input.GetKey(KeyCode.LeftControl))
