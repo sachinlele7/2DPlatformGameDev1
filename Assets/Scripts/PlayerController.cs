@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxisRaw("Jump");
 
         MoveCharacter(horizontal, vertical);
