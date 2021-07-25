@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController;
     public Animator animator;
     public float speed;
     public float jump;
@@ -15,6 +16,11 @@ public class PlayerController : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
+    public void PickupKey()
+    {
+        Debug.Log("Player picked up the key");
+        scoreController.IncreaseScore(10);
+    }
 
     private void FixedUpdate()
     {
@@ -51,7 +57,11 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayMovementAnimation(float horizontal, float vertical)
     {
-        animator.SetFloat("horizontal", Mathf.Abs(horizontal));
+       
+        if (horizontal > 0) 
+        {
+            animator.SetBool("isrunning", true);
+        }
 
         Vector3 scale = transform.localScale;
         if (horizontal < 0)
