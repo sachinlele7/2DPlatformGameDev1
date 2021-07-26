@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,10 +18,22 @@ public class PlayerController : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
+
+   // private void ReloadLevel()
+    //{
+      //  SceneManager.LoadScene(0);
+        //Debug.Log("Reloading Scene 0");
+    //}
     public void PickupKey()
     {
         Debug.Log("Player picked up the key");
         scoreController.IncreaseScore(10);
+    }
+
+    public void KillPlayer()
+    {
+        Debug.Log("Player Killed by enemy");
+       // ReloadLevel();
     }
 
     private void FixedUpdate()
