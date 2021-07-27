@@ -12,15 +12,50 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jump;
     private Rigidbody2D rb2d;
-
-    public int maxhealth = 100;
+    public int maxHealth = 100;
     public int currentHealth;
+
+    public HealthBar healthBar;
 
     private void Start()
     {
-        currentHealth = maxhealth;
+        currentHealth = maxHealth;
+        healthBar.SetHealth(maxHealth);
     }
 
+    private void Update()
+    {
+        if (currentHealth == 50)
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+
+        if (currentHealth == 0)
+        {
+            Die();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag=="Enemy")
+        {
+            TakeDamage(20);
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+        SceneManager.LoadScene(0);
+
+        healthBar.SetHealth(maxHealth);
+    }
 
     private void Awake()
     {
@@ -28,22 +63,21 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void ReloadLevel()
-    {
-        SceneManager.LoadScene(0);
+     private void ReloadLevel()
+     {
+         SceneManager.LoadScene(0);
         Debug.Log("Reloading Scene 0");
-    }
+     }
     public void PickupKey()
     {
         Debug.Log("Player picked up the key");
         scoreController.IncreaseScore(10);
     }
 
-    public void KillPlayer()
-    {
-        Debug.Log("Player Killed by enemy");
-        ReloadLevel();
-    }
+
+   
+
+   
 
     private void FixedUpdate()
     {

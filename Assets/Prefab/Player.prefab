@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 520190592}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,3 +252,6 @@ MonoBehaviour:
   animator: {fileID: 520190591}
   speed: 4
   jump: 90
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
