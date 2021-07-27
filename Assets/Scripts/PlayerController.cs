@@ -13,17 +13,26 @@ public class PlayerController : MonoBehaviour
     public float jump;
     private Rigidbody2D rb2d;
 
+    public int maxhealth = 100;
+    public int currentHealth;
+
+    private void Start()
+    {
+        currentHealth = maxhealth;
+    }
+
+
     private void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
 
-   // private void ReloadLevel()
-    //{
-      //  SceneManager.LoadScene(0);
-        //Debug.Log("Reloading Scene 0");
-    //}
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(0);
+        Debug.Log("Reloading Scene 0");
+    }
     public void PickupKey()
     {
         Debug.Log("Player picked up the key");
@@ -33,7 +42,7 @@ public class PlayerController : MonoBehaviour
     public void KillPlayer()
     {
         Debug.Log("Player Killed by enemy");
-       // ReloadLevel();
+        ReloadLevel();
     }
 
     private void FixedUpdate()
