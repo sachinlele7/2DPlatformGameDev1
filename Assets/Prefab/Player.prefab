@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: -7654463101530537823}
   - component: {fileID: 520190591}
   - component: {fileID: 520190592}
+  - component: {fileID: 1905486149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -185,7 +186,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -251,7 +252,19 @@ MonoBehaviour:
   scoreController: {fileID: 0}
   animator: {fileID: 520190591}
   speed: 4
-  jump: 90
-  maxHealth: 100
-  currentHealth: 0
-  healthBar: {fileID: 0}
+  jump: 125
+  currenthealth: 0
+--- !u!114 &1905486149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215371333444936688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384a064a862d132418660fd39fe4f94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  slider: {fileID: 0}

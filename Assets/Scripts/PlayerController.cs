@@ -14,47 +14,39 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     public int maxHealth = 100;
     public int currentHealth;
-
+    private int damage;
     public HealthBar healthBar;
+    public GameOverController gameovercontroller;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar.SetHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
     }
-
-    private void Update()
+    public void DamagePlayer()
     {
-        if (currentHealth == 50)
-        {
-            healthBar.SetHealth(currentHealth);
-        }
+        TakeDamage(20);
+        currentHealth = 0;
 
-        if (currentHealth == 0)
         {
             Die();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag=="Enemy")
-        {
-            TakeDamage(20);
-        }
-    }
-
-    void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        
+       
     }
 
     void Die()
     {
-        Destroy(gameObject);
-        SceneManager.LoadScene(0);
-
-        healthBar.SetHealth(maxHealth);
+        animator.SetBool("Death", true);
+        //Destroy(gameObject);
+        //SceneManager.LoadScene(0);
+        gameovercontroller.PlayerDied();
     }
 
     private void Awake()
@@ -63,21 +55,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
-     private void ReloadLevel()
-     {
-         SceneManager.LoadScene(0);
-        Debug.Log("Reloading Scene 0");
-     }
+    
     public void PickupKey()
     {
-        Debug.Log("Player picked up the key");
+        
         scoreController.IncreaseScore(10);
     }
 
-
-   
-
-   
+    public void OnGrounded()
+    {
+        animator.SetBool("Jump", false);
+    }
 
     private void FixedUpdate()
     {

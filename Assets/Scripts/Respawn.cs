@@ -7,9 +7,11 @@ public class Respawn : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
+    [SerializeField] private Transform enemy;
     private void OnTriggerEnter2D(Collider2D other)
 
     {
         player.transform.position = respawnPoint.transform.position;
     }
+
 }

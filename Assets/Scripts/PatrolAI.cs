@@ -6,7 +6,6 @@ using UnityEngine;
 public class PatrolAI : MonoBehaviour
 {
     public float walkSpeed;
-
     [HideInInspector]
     public bool mustPatrol;
     private bool MustTurn;
@@ -49,7 +48,7 @@ public class PatrolAI : MonoBehaviour
     void Flip()
     {
         mustPatrol = false;
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1);
         walkSpeed *= -1;
         mustPatrol = true;
     }
