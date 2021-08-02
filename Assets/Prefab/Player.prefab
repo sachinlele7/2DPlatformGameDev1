@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -59,7 +58,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.810372
+  orthographic size: 6.5866337
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -75,14 +74,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!1 &4215371333444936688
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,8 +243,11 @@ MonoBehaviour:
   scoreController: {fileID: 0}
   animator: {fileID: 520190591}
   speed: 4
-  jump: 125
-  currenthealth: 0
+  jump: 100
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 1905486149}
+  gameovercontroller: {fileID: 0}
 --- !u!114 &1905486149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,5 +260,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384a064a862d132418660fd39fe4f94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   slider: {fileID: 0}

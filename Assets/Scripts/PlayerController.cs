@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("Death", true);
+            SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
             //Destroy(gameObject);
             //SceneManager.LoadScene(0);
             gameovercontroller.PlayerDied();
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         position.x = position.x + horizontal * speed * Time.deltaTime;
         transform.position = position;
+        SoundManager.Instance.PlayMusic(Sounds.PlayerMove);
         if (horizontal > 0)
         {
             animator.SetBool("isrunning", true);

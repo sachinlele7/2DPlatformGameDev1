@@ -1,10 +1,13 @@
 
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
-    public string Level1;
+    public string[] Levels;
+    //public string Level1;
     public static LevelManager Instance { get { return instance; } }
     private void Awake()
     {
@@ -21,9 +24,25 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (GetLevelStatus(Level1) == LevelStatus.Locked)
+        if (GetLevelStatus(Levels[0]) == LevelStatus.Locked)
         {
-            SetLevelStatus(Level1, LevelStatus.Unlocked);
+            SetLevelStatus(Levels[0], LevelStatus.Unlocked);
+        }
+    }
+
+    public void MarkCurrentLevelComplete()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SetLevelStatus(currentScene.name, LevelStatus.Completed);
+        // int nextSceneIndex = currentScene.buildIndex + 1;
+        // Scene nextScene = SceneManager.GetSceneByBuildIndex(nextSceneIndex);
+        // SetLevelStatus(nextScene.name, LevelStatus.Unlocked);
+
+        int currentSceneIndex = Array.FindIndex(Levels, level => level == currentScene.name);
+        int NextSceneIndex = currentSceneIndex + 1;
+        if (NextSceneIndex < Levels.Length)
+        {
+            SetLevelStatus(Levels[NextSceneIndex], LevelStatus.Unlocked);
         }
     }
 

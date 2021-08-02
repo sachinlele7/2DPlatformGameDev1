@@ -14,11 +14,13 @@ public class GameOverController : MonoBehaviour
     }
     public void PlayerDied()
     {
+       
         gameObject.SetActive(true);
     }
 
     private void ReloadLevel()
     {
-        SceneManager.LoadScene(1);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
     }
 }
