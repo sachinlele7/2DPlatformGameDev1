@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     public GameOverController gameovercontroller;
 
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -26,11 +27,7 @@ public class PlayerController : MonoBehaviour
     public void DamagePlayer()
     {
         TakeDamage(20);
-        currentHealth = 0;
-
-        {
-            Die();
-        }
+        
     }
 
     private void TakeDamage(int damage)
@@ -38,15 +35,22 @@ public class PlayerController : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         
-       
     }
 
+    private void Update()
+    {
+        Die();
+    }
     void Die()
     {
-        animator.SetBool("Death", true);
-        //Destroy(gameObject);
-        //SceneManager.LoadScene(0);
-        gameovercontroller.PlayerDied();
+        if (currentHealth <= 0)
+        {
+            animator.SetBool("Death", true);
+            //Destroy(gameObject);
+            //SceneManager.LoadScene(0);
+            gameovercontroller.PlayerDied();
+        }
+        
     }
 
     private void Awake()
@@ -133,16 +137,4 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-

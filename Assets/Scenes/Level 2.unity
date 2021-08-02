@@ -4108,6 +4108,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519420031, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
+      propertyPath: orthographic size
+      value: 6.405212
+      objectReference: {fileID: 0}
     - target: {fileID: 520190592, guid: 4d8d5eaf1d086bf41b4a27d406ca8bea, type: 3}
       propertyPath: healthBar
       value: 
