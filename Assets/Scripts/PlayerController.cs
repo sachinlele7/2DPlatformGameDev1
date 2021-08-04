@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("Death", true);
-            SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
+            
             //Destroy(gameObject);
             //SceneManager.LoadScene(0);
             gameovercontroller.PlayerDied();
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         position.x = position.x + horizontal * speed * Time.deltaTime;
         transform.position = position;
-        SoundManager.Instance.PlayMusic(Sounds.PlayerMove);
+        SoundManager.Instance.Play(Sounds.PlayerMove);
         if (horizontal > 0)
         {
             animator.SetBool("isrunning", true);
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
         
         animator.SetBool("Jump", vertical > 0);
+        SoundManager.Instance.Play(Sounds.PlayerJump);
 
 
         if (Input.GetKey(KeyCode.LeftControl))
