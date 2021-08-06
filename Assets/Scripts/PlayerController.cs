@@ -47,7 +47,8 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("Death", true);
-            
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
+
             //Destroy(gameObject);
             //SceneManager.LoadScene(0);
             gameovercontroller.PlayerDied();
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         position.x = position.x + horizontal * speed * Time.deltaTime;
         transform.position = position;
-        SoundManager.Instance.Play(Sounds.PlayerMove);
+        //SoundManager.Instance.Play(Sounds.PlayerMove);
         if (horizontal > 0)
         {
             animator.SetBool("isrunning", true);
@@ -105,6 +106,8 @@ public class PlayerController : MonoBehaviour
         if(vertical > 0)
         {
             rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
+            
+
         }
     }
     private void PlayMovementAnimation(float horizontal, float vertical)
@@ -127,7 +130,9 @@ public class PlayerController : MonoBehaviour
 
         
         animator.SetBool("Jump", vertical > 0);
-        SoundManager.Instance.Play(Sounds.PlayerJump);
+       //indObjectOfType<AudioManager>().Play("PlayerJump");
+
+        //SoundManager.Instance.Play(Sounds.PlayerJump);
 
 
         if (Input.GetKey(KeyCode.LeftControl))

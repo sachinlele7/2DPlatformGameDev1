@@ -14,6 +14,7 @@ public class LevelLoader : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(onClick);
+        FindObjectOfType<AudioManager>().Play("Button");
     }
 
     private void onClick()
@@ -25,12 +26,14 @@ public class LevelLoader : MonoBehaviour
                 break;
 
             case LevelStatus.Unlocked:
-                SoundManager.Instance.Play(Sounds.ButtonClick);
+                //SoundManager.Instance.Play(Sounds.ButtonClick);
+                FindObjectOfType<AudioManager>().Play("Button");
                 SceneManager.LoadScene(LevelName);
                 break;
 
             case LevelStatus.Completed:
-                SoundManager.Instance.Play(Sounds.ButtonClick);
+                //SoundManager.Instance.Play(Sounds.ButtonClick);
+                FindObjectOfType<AudioManager>().Play("Button");
                 SceneManager.LoadScene(LevelName);
                 break;
 

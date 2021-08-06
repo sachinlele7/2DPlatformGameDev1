@@ -5,53 +5,129 @@ using UnityEngine;
 
 public class PatrolAI : MonoBehaviour
 {
-    public float walkSpeed;
-    [HideInInspector]
-    public bool mustPatrol;
-    private bool MustTurn;
-    public Rigidbody2D rb;
-    public Transform GroundDetect;
-    public LayerMask groundLayer;
-    public LayerMask ground1Layer;
-    public Collider2D bodyCollider;
+    const string LEFT = "left";
+    const string RIGHT = "right";
 
-    private void Start()
+    [SerializeField]
+    Transform groundDetect;
+
+    [SerializeField]
+    float baseCastDist;
+
+    string facingDirection;
+
+    Vector3 baseScale;
+
+    Rigidbody2D rb2d;
+
+    float moveSpeed = 3;
+
+
+   void Start()
     {
-        mustPatrol = true;
+        baseScale = transform.localScale;
+        facingDirection = RIGHT;
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        if (mustPatrol)
-        {
-            Patrol();
-        }
-    }
 
     private void FixedUpdate()
     {
-        if(mustPatrol)
-        {
-            MustTurn = !Physics2D.OverlapCircle(GroundDetect.position, 0.1f, groundLayer);
-        }
-    }
-    private void Patrol()
-    {
-        if(MustTurn || bodyCollider.IsTouchingLayers(groundLayer))
-        {
-            Flip();
-        }
+        float vX = moveSpeed;
         
-        rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        if (facingDirection == LEFT)
+        {
+            vX = -moveSpeed;
+        }
+        else if (facingDirection == RIGHT)
+        {
+            vX = moveSpeed;
+        }
+            rb2d.velocity = new Vector2(vX, rb2d.velocity.y);
+
+        if(IsHittingWall() || IsNearEdge())
+        {
+            if(facingDirection == LEFT)
+            {
+                ChangeFacingDirection(RIGHT);
+            }
+            else if (facingDirection == RIGHT)
+            {
+                ChangeFacingDirection(LEFT);
+            }
+
+        }
     }
 
-    void Flip()
+    void ChangeFacingDirection(string newDirection)
     {
-        mustPatrol = false;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1);
-        walkSpeed *= -1;
-        mustPatrol = true;
+        Vector3 newScale = baseScale;
+
+        if (newDirection == LEFT)
+        {
+            newScale.x = -baseScale.x;
+        }
+        else
+        if (newDirection == LEFT)
+        {
+            newScale.x = baseScale.x;
+        }
+
+            transform.localScale = newScale;
+
+        facingDirection = newDirection;
     }
+
+    bool IsHittingWall()
+    {
+        bool val = false;
+
+        float castDist = baseCastDist;
+
+        if (facingDirection == LEFT)
+        {
+            castDist = -baseCastDist;
+        }
+        else if (facingDirection == RIGHT)
+        {
+            castDist = baseCastDist;
+        }
+
+            Vector3 targetPos = groundDetect.position;
+        targetPos.x += castDist;
+
+        if (Physics2D.Linecast(groundDetect.position, targetPos, 1 << LayerMask.NameToLayer("ground")))
+        {
+            val = true;
+        }
+        else
+        {
+            val = false;
+        }
+        return val;
+    }
+
+    bool IsNearEdge()
+    {
+        bool val = true;
+
+        float castDist = baseCastDist;
+
+        Vector3 targetPos = groundDetect.position;
+        targetPos.y -= castDist;
+
+        if (Physics2D.Linecast(groundDetect.position, targetPos, 1 << LayerMask.NameToLayer("ground")))
+        {
+            val = false;
+        }
+        else
+        {
+            val = true;
+        }
+
+        return val;
+    }
+
 
 
 }

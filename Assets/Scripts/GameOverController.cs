@@ -9,12 +9,13 @@ public class GameOverController : MonoBehaviour
 {
     public Button buttonRestart;
     public Button Lobby;
-    public ParticleSystem particleSystem;
+    public new ParticleSystem particleSystem;
     
 
     private void Awake()
     {
         buttonRestart.onClick.AddListener(ReloadLevel);
+        FindObjectOfType<AudioManager>().Play("Button");
 
         {
             PlayGameOVerEffect();
@@ -29,7 +30,8 @@ public class GameOverController : MonoBehaviour
 
     public void PlayerDied()
     {
-        SoundManager.Instance.Play(Sounds.PlayerDeath);
+        //SoundManager.Instance.Play(Sounds.PlayerDeath);
+        //FindObjectOfType<AudioManager>().Play("PlayerDeath");
         gameObject.SetActive(true);
     }
 
